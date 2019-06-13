@@ -48,8 +48,7 @@ private Context context;
     final ListView moviesListView = view.findViewById(R.id.movies_list);
 
     final MoviesViewModel viewModel = ViewModelProviders.of(getActivity()).get(MoviesViewModel.class);
-
-
+    
     viewModel.getMoviesLiveData(context).observe(this, new Observer<Map<Long, Movie>>() {
       @Override
       public void onChanged(Map<Long, Movie> longMovieMap) {
