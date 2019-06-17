@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import edu.cnm.deepdive.atthemovies.MoviesDatabase;
 import edu.cnm.deepdive.atthemovies.model.Actor;
+import edu.cnm.deepdive.atthemovies.model.ActorMovieJoin;
 import edu.cnm.deepdive.atthemovies.model.Movie;
 import java.util.List;
 
@@ -54,6 +55,18 @@ public class MoviesViewModel extends AndroidViewModel {
     MoviesDatabase db = MoviesDatabase.getInstance(getApplication());
     return db.movieDao().findById(id);
 
+  }
+
+  public void addActorToMovie(final Long movieId, final Long id) {
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        ActorMovieJoin actorMovieJoin = new ActorMovieJoin();
+        actorMovieJoin.setMovieId(movieId);
+        actorMovieJoin.setActorId(id);
+        MoviesDatabase.getInstance(getApplication()).actorMovieJoinDao().insert(actorMovieJoin);
+      }
+    }).start();
   }
 }
 
