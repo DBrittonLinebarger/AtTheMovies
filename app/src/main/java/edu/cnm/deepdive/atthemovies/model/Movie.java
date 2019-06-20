@@ -9,6 +9,7 @@ import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,12 @@ public class Movie implements Serializable {
 
   private String screenwriter;
 
+
+
+  @TypeConverters(DateConverter.class)
+  private Date timestamp;
+
+
   public enum Genre{
     HORROR, ACTION, ROMCOM, DOCUMENTARY, ANIME, SCIFI,FANTASY
   }
@@ -30,6 +37,13 @@ public class Movie implements Serializable {
   @TypeConverters(GenreConverter.class)
   private Genre genre;
 
+  public Date getTimestamp() {
+    return timestamp;
+  }
+
+  public void setTimestamp(Date timestamp) {
+    this.timestamp = timestamp;
+  }
   public Long getId() {
     return id;
   }
@@ -81,5 +95,18 @@ public class Movie implements Serializable {
       return genre.name();
     }
 
+  }
+
+  public  static class DateConverter {
+
+    @TypeConverter
+    public static Date LongToDate(Long value) {
+      return value == null ? null : new Date(value);
+    }
+
+    @TypeConverter
+    public static Long dateToLong(Date value) {
+      return value == null ? null : value.getTime();
+    }
   }
 }

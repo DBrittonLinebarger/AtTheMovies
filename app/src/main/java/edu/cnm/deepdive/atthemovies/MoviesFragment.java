@@ -20,6 +20,7 @@ import androidx.navigation.Navigation;
 import edu.cnm.deepdive.atthemovies.model.Movie;
 import edu.cnm.deepdive.atthemovies.viewmodel.MoviesViewModel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,7 @@ private Context context;
         EditText newMovieScreenwriter = view.findViewById(R.id.new_movie_screenwriter);
         Movie newMovie = new Movie();
         newMovie.setTitle(newMovieNameEditText.getText().toString());
+        newMovie.setTimestamp(new Date());
         newMovie.setScreenwriter(newMovieScreenwriter.getText().toString());
         newMovie.setGenre((Movie.Genre) genreSpinner.getSelectedItem());
         viewModel.addMovie(newMovie);
