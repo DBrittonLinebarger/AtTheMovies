@@ -74,7 +74,8 @@ public class ActorsFragment extends Fragment {
     });
 
     final MoviesViewModel moviesViewModel = ViewModelProviders.of(getActivity()).get(MoviesViewModel.class);
-    moviesViewModel.getActorsLiveData().observe(this, new Observer<List<Actor>>() {
+    moviesViewModel.getActorsLiveData().observe(this,
+        new Observer<List<Actor>>() {
       @Override
       public void onChanged(List<Actor> actors) {
         final Spinner actorsSpinner = view.findViewById(R.id.actor_spinner);

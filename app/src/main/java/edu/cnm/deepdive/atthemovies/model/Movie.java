@@ -65,7 +65,8 @@ public class Movie implements Serializable {
     return genre;
   }
 
-  public void setGenre(Genre genre) {
+  public void setGenre(Genre genre)
+  {
     this.genre = genre;
   }
 
